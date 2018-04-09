@@ -1,0 +1,73 @@
+
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+    <div class="center sliding">Form</div>
+    <div class="right">
+      <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+    </div>
+  </div>
+</div>
+<div class="pages">
+  <!-- Page, data-page contains page name-->
+  <div data-page="form" class="page">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block-title">Form Example</div>
+      <div class="list-block">
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-inner"> 
+                <div class="item-title label">Name</div>
+                <div class="item-input">
+                  <input type="text" placeholder="Your name"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner"> 
+                <div class="item-title label">Date</div>
+                <div class="item-input">
+                  <input type="date" placeholder="date"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner"> 
+                <div class="item-title label">Time</div>
+          <div class="item-input-wrap">
+            <input type="text" placeholder="Select date" readonly="readonly" id="demo-calendar-modal"/>
+          </div>
+              </div>
+            </div>
+          </li>
+          <li class="align-top">
+            <div class="item-content">
+              <div class="item-inner"> 
+                <div class="item-title label">Notes</div>
+                <div class="item-input">
+                  <textarea></textarea>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="row">
+          <div class="col-50"><a href="#" class="button button-big button-fill color-black">Cancel</a></div>
+          <div class="col-50">
+            <input type="submit" value="Submit" class="button button-big button-fill color-green"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
