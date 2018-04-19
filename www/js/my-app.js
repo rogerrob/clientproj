@@ -1,23 +1,35 @@
 // Initialize your app
 var myApp = new Framework7(); 
 
-//time scroll wheel
-var pickerDescribe = myApp.picker({
-    input: '#picker-describe',
-    rotateEffect: true,
-    cols: [
-        {
-            textAlign: 'left',
-            values: ('00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23').split(' ')
-        },
-        {
-            values: ('00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59').split(' ')
-        },
-    ]
-});  
-
 // Export selectors engine
 var $$ = Dom7;
+
+// local storage
+$$('.get-storage-data').on('click', function() {
+  var storedData = myApp.formGetData('form');
+  if(storedData) {
+    alert(JSON.stringify(storedData));
+  }
+  else {
+    alert('There is no stored data for this form yet. Try to change any field')
+  }
+});
+ 
+$$('.delete-storage-data').on('click', function() {
+  var storedData = myApp.formDeleteData('form');
+  alert('Form data deleted')
+});
+ 
+$$('.save-storage-data').on('click', function() {
+  var storedData = myApp.formStoreData('form', {
+    'name': 'John',
+    'email': 'john@doe.com',
+    'gender': 'female',
+    'switch': ['yes'],
+    'slider': 10
+  });
+  alert('Form data replaced, refresh browser to see changes')
+});
 
 // Add view
 var mainView = myApp.addView('.view-main', {

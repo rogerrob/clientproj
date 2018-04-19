@@ -1,73 +1,99 @@
-
 <!-- We don't need full layout here, because this page will be parsed with Ajax-->
 <!-- Top Navbar-->
 <div class="navbar">
-  <div class="navbar-inner">
-    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-    <div class="center sliding">Form</div>
-    <div class="right">
-      <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+    <div class="navbar-inner">
+        <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+        <div class="center sliding">Food</div>
+        <div class="right">
+<!-- Right link contains only icon - additional "icon-only" class-->
+            <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+        </div>
     </div>
-  </div>
 </div>
 <div class="pages">
-  <!-- Page, data-page contains page name-->
-  <div data-page="form" class="page">
-    <!-- Scrollable page content-->
-    <div class="page-content">
-      <div class="content-block-title">Form Example</div>
-      <div class="list-block">
-        <ul>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-title label">Activity</div>
-                <div class="item-input">
-                  <input type="text" placeholder=""/>
-                </div>
-              </div>
+    <!-- Page, data-page contains page name-->
+    <div data-page="form" class="page">
+        <!-- Scrollable page content-->
+        <div class="page-content">
+            <div class="content-block-title">Food input</div>
+            <div class="list-block">
+                <ul>
+                    <!--Activity Name-->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">Activity</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Smart select -->
+                    <li>
+                    <!-- Additional "smart-select" class -->
+                        <a href="#" class="item-link smart-select">
+                            <!-- select -->
+                            <select name="">
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="dinner">Dinner</option>
+                            </select>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <!-- Select label -->
+                                    <div class="item-title">Meal</div>
+                                    <!-- Selected value, not required -->
+                                    <div class="item-after">lunch</div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Date time-->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">Date & Time</div>
+                                <div class="item-input">
+                                    <input type="datetime-local">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!--Calories-->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">Calories</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="e.g. 100, 250, 300"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!--Notes-->
+                    <li class="align-top">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">Notes</div>
+                                <div class="item-input">
+                                    <textarea></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-          </li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-title label">Date</div>
-                <div class="item-input">
-                  <input type="date" placeholder="date"/>
+            <!--Cancel and Submit buttons-->
+            <div class="content-block">
+                <div class="row">
+                    <!---Cancel--->
+                    <div class="col-50"><a href="index.html" class="button button-big button-fill color-black">Cancel</a></div>
+                    <!---Submit--->
+                    <div class="col-50"><input type="submit" value="Submit" class="button button-big button-fill color-green"/>
+                    </div>
                 </div>
-              </div>
             </div>
-            </li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-title label">Calories</div>
-                <div class="item-input">
-                  <input type="text" placeholder="e.g. 100, 250, 300"/>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="align-top">
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-title label">Notes</div>
-                <div class="item-input">
-                  <textarea></textarea>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="content-block">
-        <div class="row">
-          <div class="col-50"><a href="index.html" class="button button-big button-fill color-black">Cancel</a></div>
-          <div class="col-50">
-            <input type="submit" value="Submit" class="button button-big button-fill color-green"/>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
