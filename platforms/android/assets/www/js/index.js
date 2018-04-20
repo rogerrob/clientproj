@@ -20,6 +20,13 @@ var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.addEventListener('deviceready', onDeviceReady, false);
+
+        // Cordova is ready
+        function onDeviceReady() {
+          //var db = window.sqlitePlugin.openDatabase({name: 'my.db', location: 'default'});
+          // ...
+        }
     },
 
     // deviceready Event Handler
