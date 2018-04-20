@@ -4,33 +4,6 @@ var myApp = new Framework7();
 // Export selectors engine
 var $$ = Dom7;
 
-// local storage
-$$('.get-storage-data').on('click', function() {
-  var storedData = myApp.formGetData('form');
-  if(storedData) {
-    alert(JSON.stringify(storedData));
-  }
-  else {
-    alert('There is no stored data for this form yet. Try to change any field')
-  }
-});
- 
-$$('.delete-storage-data').on('click', function() {
-  var storedData = myApp.formDeleteData('form');
-  alert('Form data deleted')
-});
- 
-$$('.save-storage-data').on('click', function() {
-  var storedData = myApp.formStoreData('form', {
-    'name': 'John',
-    'email': 'john@doe.com',
-    'gender': 'female',
-    'switch': ['yes'],
-    'slider': 10
-  });
-  alert('Form data replaced, refresh browser to see changes')
-});
-
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar

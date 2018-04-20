@@ -1,4 +1,3 @@
-<!-- We don't need full layout here, because this page will be parsed with Ajax-->
 <!-- Top Navbar-->
 <div class="navbar">
     <div class="navbar-inner">
@@ -12,7 +11,7 @@
 </div>
 <div class="pages">
     <!-- Page, data-page contains page name-->
-    <div data-page="form" class="page">
+    <div data-page="form" class="page store-data">
         <!-- Scrollable page content-->
         <div class="page-content">
             <div class="content-block-title">Food input</div>
@@ -24,7 +23,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">Activity</div>
                                 <div class="item-input">
-                                    <input type="text" placeholder=""/>
+                                    <input type="text" name="Activity" placeholder=""/>
                                 </div>
                             </div>
                         </div>
@@ -32,10 +31,10 @@
                     <!-- Smart select -->
                     <li>
                     <!-- Additional "smart-select" class -->
-                        <a href="#" class="item-link smart-select">
+                        <a href="#" class="item-link smart-select smart-select-init" data-open-in="sheet">
                             <!-- select -->
-                            <select name="">
-                                <option value="breakfast">Breakfast</option>
+                            <select name="meal">
+                                <option value="breakfast" selected>Breakfast</option>
                                 <option value="lunch">Lunch</option>
                                 <option value="dinner">Dinner</option>
                             </select>
@@ -43,8 +42,6 @@
                                 <div class="item-inner">
                                     <!-- Select label -->
                                     <div class="item-title">Meal</div>
-                                    <!-- Selected value, not required -->
-                                    <div class="item-after">lunch</div>
                                 </div>
                             </div>
                         </a>
@@ -55,7 +52,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">Date & Time</div>
                                 <div class="item-input">
-                                    <input type="datetime-local">
+                                    <input type="datetime-local" id="datetime">
                                 </div>
                             </div>
                         </div>
@@ -66,7 +63,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">Calories</div>
                                 <div class="item-input">
-                                    <input type="text" placeholder="e.g. 100, 250, 300"/>
+                                    <input type="text" id="calories" placeholder="e.g. 100, 250, 300"/>
                                 </div>
                             </div>
                         </div>
@@ -90,10 +87,12 @@
                     <!---Cancel--->
                     <div class="col-50"><a href="index.html" class="button button-big button-fill color-black">Cancel</a></div>
                     <!---Submit--->
-                    <div class="col-50"><input type="submit" value="Submit" class="button button-big button-fill color-green"/>
+                    <div class="col-50"><input type="submit" value="Submit" onClick="addItem" class="button button-big button-fill color-green" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript" src="js/dbfunctional.js"></script>

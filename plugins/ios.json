@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.app.hybridclapp"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.app.hybridclapp"
         }
     },
     "dependent_plugins": {}
