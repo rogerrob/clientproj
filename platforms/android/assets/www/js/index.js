@@ -24,7 +24,6 @@ var app = {
 
         // Cordova is ready
         function onDeviceReady() {
-          //var db = window.sqlitePlugin.openDatabase({name: 'my.db', location: 'default'});
           // ...
         }
     },

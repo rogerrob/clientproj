@@ -1,8 +1,1 @@
-DROP TABLE MBdietplan
 
-CREATE TABLE MBdietplan (
-Activity varchar(10),
-Meal varchar(10),
-Calories INT(5),
-TimeDate DATETIME,
-Notes varchar(25));

@@ -23,14 +23,14 @@
                     <div class="item-inner">
                         <div class="item-title label">Activity</div>
                         <div class="item-input">
-                            <input type="text" name="Activity" placeholder=""/>
+                            <input type="text" name="activity" id="activity" placeholder=""/>
                         </div>
                     </div>
                 </div>
             </li>
             <li>
             <!-- Additional "smart-select" class -->
-                <a href="#" class="item-link smart-select smart-select-init" data-open-in="sheet">
+                <a href="#" class="item-link smart-select smart-select-init" data-open-in="sheet" id="meal">
                     <!-- select -->
                     <select name="meal">
                         <option value="breakfast" selected>Breakfast</option>
@@ -51,7 +51,7 @@
                     <div class="item-inner">
                         <div class="item-title label">Calories</div>
                         <div class="item-input">
-                            <input type="text" id="calories" placeholder="e.g. 100, 250, 300"/>
+                            <input type="text" name="calories" id="calories" placeholder="e.g. 100, 250, 300"/>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="item-inner">
                         <div class="item-title label">Date & Time</div>
                         <div class="item-input">
-                            <input type="datetime-local" id="datetime">
+                            <input type="datetime-local" name="timedate" id="timedate">
                         </div>
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                 <div class="item-content">
                     <div class="item-inner">
                         <div class="item-title label">Notes</div>
-                        <div class="item-input">
-                            <textarea></textarea>
+                        <div class="item-input" name="notes" id="notes">
+                            <input type="textarea" name="notes" id="notes">
                         </div>
                     </div>
                 </div>
@@ -81,14 +81,13 @@
         </ul>
     </form>
     <div class="content-block">
-        <p><a href="#" class="button addItem">Sumbit</a></p>
+        <p><a target="_blank" href="javascript:addData()" class="button">Sumbit</a></p>
         <p><a href="index.html" class="button delete-storage-data">Cancel</a></p>
         <p><a href="#" class="button save-storage-data">Save Data</a></p>
     </div>
 </div>
-
 </div>
 </div>
 </div>
-<script type="text/javascript" src="node_modules/framework7/dist/js/framework7.min.js"></script>
 <script type="text/javascript" src="js/my-app.js"></script>
+<script type="text/javascript" src="js/dbfunctional.js"></script>
