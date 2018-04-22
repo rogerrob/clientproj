@@ -15,7 +15,6 @@ openRequest.onerror = function (event) {
 openRequest.onsuccess = function (event) {
     // Database is open and initialized - we're good to proceed.
     db = openRequest.result;
-    displayData();
 };
 openRequest.onupgradeneeded = function (event) {
     // This is either a newly created database, or a new version number
@@ -30,7 +29,7 @@ openRequest.onupgradeneeded = function (event) {
     // the key is stored. If a key path is specified, the store can only contain
     // JavaScript objects, and each object stored must have a property with the
     // same name as the key path (unless the autoIncrement option is true).
-    var store = db.createObjectStore('timedate', { keyPath: 'timedate' });
+    var store = db.createObjectStore('dietplan', { keyPath: 'timedate' });
 
     // Define the indexes we want to use. Objects we add to the store don't need
     // to contain these properties, but they will only appear in the specified
@@ -43,70 +42,96 @@ openRequest.onupgradeneeded = function (event) {
     store.createIndex('calories', 'calories', { unique: false });
     store.createIndex('meal', 'meal', { unique: false });
     store.createIndex('notes', 'notes', { unique: false });
+    store.createIndex('timedate', 'timedate', {unique: true});
 
     // Once the store is created, populate it
     store.transaction.oncomplete = function(event) {
       // Store values in the newly created objectStore.
-      var ObjectStore = db.transaction("MBdiet", "readwrite").objectStore("MBdiet");
-      customerData.forEach(function(MBdiets) {
-        ObjectStore.add(MBdiets);
+      var ObjectStore = db.transaction("dietplan", "readwrite").objectStore("dietplan");
+      store.forEach(function(dietplans) {
+        ObjectStore.add(dietplans);
       });
     };
 };
 
-function displayData() {
+function defaultData(){
+  store.put({activity: "1231", meal: "lunch", calories: "100", timedate: "2018-04-22T11:11", notes: "123"});
+  store.put({activity: "breakfasct with jamal", meal: "Breakfast", calories: "200", timedate: "2018-04-22T12:10", notes: "321"});
 }
 
+function displayData() {
+var search = document.getElementById("search").value;
+
+var transaction = db.transaction(["dietplan"]);
+var objectStore = transaction.objectStore("dietplan");
+var request = objectStore.get(search);
+
+request.onerror = function(event) {
+  // Handle errors!
+};
+request.onsuccess = function(event) {
+  // Do something with the request.result!
+  alert("added all entries for meal");
+};
+};
+
 function addData() {
-  var Activity = document.getElementById("activity").value;
-  var Meal = document.getElementById("meal").value;
-  var Calories = document.getElementById("calories").value;
-  var Notes = document.getElementById("notes").value;
-  var timeDate = document.getElementById("timedate").value;
+  var activity = $$('#activity').val();
+  var meal = $$('#meal').val();
+  var calories = $$('#calories').val();
+  var notes = $$('#notes').val();
+  var timedate = $$('#timedate').val();
 
 
-  if(Activity == "")
+  if(activity == "")
   {
       alert("Please enter a activity name!");
       return;
   }
-
-  if(Calories == "")
+  if(calories == "")
   {
       alert("Please fill in calories, cannot be blank");
       return;
   }
-
-  if(timeDate == "")
+  if(timedate == "")
   {
       alert("Please select a time & date");
       return;
   }
-  // Create a new object ready for being inserted into the IDB
-  var newItem = [ { activity: Activity, meal: Meal, calories: Calories, timedate: timeDate, notes: Notes} ];
 
   // open a read/write db transaction, ready for adding the data
-  var transaction = db.transaction(["MBdiet"], "readwrite");
-
-  // report on the success of opening the transaction
-  transaction.oncomplete = function(event) {
-    note.innerHTML += '<li>Transaction completed: database modification finished.</li>';
-  };
-
-  transaction.onerror = function(event) {
-    note.innerHTML += '<li>Transaction not opened due to error. Duplicate items not allowed.</li>';
-  };
+  var transaction = db.transaction(["dietplan"], "readwrite");
 
   // create an object store on the transaction
-  var objectStore = transaction.objectStore("MBdiets");
+  var objectStore = transaction.objectStore("dietplan");
+
+  // Create a new object ready for being inserted into the IDB
+  var newItem = {
+    activity: activity,
+    meal: meal, //doesnt record data
+    calories: calories,
+    timedate: timedate,
+    notes: notes //doesnt record data
+  }
 
   // add our newItem object to the object store
-  var objectStoreRequest = objectStore.add(newItem[0]);
+  var objectStoreRequest = objectStore.add(newItem);
 
   objectStoreRequest.onsuccess = function(event) {
     // report the success of the request (this does not mean the item
     // has been stored successfully in the DB - for that you need transaction.onsuccess)
-    note.innerHTML += '<li>Request successful.</li>';
+    console.log("Request successful");
+    window.location.href="index.html";
+
+  // report on the success of opening the transaction
+  transaction.oncomplete = function(event) {
+    console.log("Transaction completed: database modification finished");
+  };
+
+  transaction.onerror = function(event) {
+    alert("Transaction not opened due to error. Duplicate items not allowed");
+    console.log("error", e.target.error.name);
+  };
   };
 };
 
@@ -152,3 +177,4 @@ function createContentPage() {
     );
 	return;
 }
+//https://www.eduonix.com/dashboard/Learn-HTML5-IndexedDB-App
