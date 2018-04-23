@@ -17,7 +17,7 @@
     <div class="page-content">
       <div class="content-block">
         <div class="data-table">
-          <table>
+          <table id=dietplan>
             <thead>
               <tr>
                 <th class="label-cell">Activity</th>
@@ -27,29 +27,14 @@
                 <th class="label-cell">Notes</th>
               </tr>
             </thead>
-            <tbody id="#dietplan">
+            <tbody>
             </tbody>
           </table>
         </div>
-<!--        <div class="content-block-inner">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Date & Time</th>
-                  <th>Activity</th>
-                  <th>Meal</th>
-                  <th>Calories</th>
-                  <th>Notes</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="activity">
-              </tbody>
-            </table>
-          </div>
--->
       </div>
-    </div>
+      <div class="content-block">
+          <p><a target="_blank" href="javascript:displayData()" class="button">Load records</a></p>
+          <p><a target="_blank" href="javascript:deleteDB()" class="button">Delete record</a></p>
+      </div>
   </div>
 </div>

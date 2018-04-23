@@ -23,7 +23,7 @@ openRequest.onupgradeneeded = function (event) {
     var db = event.target.result;
 
     if(!db.objectStoreNames.contains('dietplan')){
-      var os = db.createObjectStore('dietplan',{keyPath: "timedate"});
+      var os = db.createObjectStore('dietplan',{ keyPath: "timedate" });
       //Create Index for Name
       os.createIndex('activity','activity',{unique:false});
 
@@ -61,11 +61,6 @@ openRequest.onupgradeneeded = function (event) {
       });
     };
 };
-
-$$('.viewEntries').on('click', function(){
-  displayData();
-});
-
 
 function addData() {
   var activity = $$('#activity').val();
@@ -144,17 +139,17 @@ function displayData(event) {
 	index.openCursor().onsuccess = function(event){
 		var cursor = event.target.result;
 		if(cursor){
-      output += "<tr>";
-      output += "<td">+cursor.value.activity+"</td>";
-			output += "<td>"+cursor.value.meal+"</td>";
-      output += "<td>"+cursor.value.calories+"</td>";
-      output += "<td>"+cursor.value.notes+"</td>";
-      output += "<td>"+cursor.value.timedate+"</td>";
+      output += "<tr id='newItem_"+cursor.value.id+"'>";
+      output += "<td<span class='cursor newItem'>">+cursor.value.activity+"</span></td>";
+			output += "<td><span class='cursor newItem'>"+cursor.value.meal+"</span></td>";
+      output += "<td><span class='cursor newItem'>"+cursor.value.calories+"</span></td>";
+      output += "<td><span class='cursor newItem'>"+cursor.value.notes+"</span></td>";
+      output += "<td><span class='cursor newItem'>"+cursor.value.timedate+"</span></td>";
 			output += "</tr>";
 			cursor.continue();
+
 		}
-    $$('dietplan').html(output);
+    $$('#dietplan > tbody:last-child').html(output);
 	};
-    alert("data loaded");
 };
 //https://www.eduonix.com/dashboard/Learn-HTML5-IndexedDB-App
