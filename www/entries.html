@@ -4,7 +4,7 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-    <div class="center sliding">Services</div>
+    <div class="center sliding">Data Entries</div>
     <div class="right">
       <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
     </div>
@@ -16,20 +16,39 @@
     <!-- Scrollable page content-->
     <div class="page-content">
       <div class="content-block">
-        <div class="content-block-inner">
-          <li class="item-content item-input">
-            <div class="item-media">... icon/image here ...</div>
-            <div class="item-inner">
-              <div class="item-title item-label">Search</div>
-              <div class="item-input-wrap">
-                <input type="text" name="search" id="search">
-                <span class="input-clear-button"></span>
-              </div>
-            </div>
-          </li>
-          <button onclick="displayData();">Click me</button>
-          <ul id="infolist">
-          </ul>
+        <div class="data-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="label-cell">Activity</th>
+                <th class="label-cell">Meal</th>
+                <th class="label-cell">Calories</th>
+                <th class="label-cell">Date/Time</th>
+                <th class="label-cell">Notes</th>
+              </tr>
+            </thead>
+            <tbody id="#dietplan">
+            </tbody>
+          </table>
+        </div>
+<!--        <div class="content-block-inner">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Activity</th>
+                  <th>Meal</th>
+                  <th>Calories</th>
+                  <th>Notes</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="activity">
+              </tbody>
+            </table>
+          </div>
+-->
       </div>
     </div>
   </div>

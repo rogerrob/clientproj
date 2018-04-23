@@ -15,14 +15,22 @@ openRequest.onerror = function (event) {
 openRequest.onsuccess = function (event) {
     // Database is open and initialized - we're good to proceed.
     db = openRequest.result;
+
 };
 openRequest.onupgradeneeded = function (event) {
     // This is either a newly created database, or a new version number
     // has been submitted to the open() call.
     var db = event.target.result;
+
+    if(!db.objectStoreNames.contains('dietplan')){
+      var os = db.createObjectStore('dietplan',{keyPath: "timedate"});
+      //Create Index for Name
+      os.createIndex('activity','activity',{unique:false});
+
     db.onerror = function () {
         console.log(db.errorCode);
     };
+  };
 
     // Create an object store and indexes. A key is a data value used to organize
     // and retrieve values in the object store. The keyPath option identifies where
@@ -54,26 +62,10 @@ openRequest.onupgradeneeded = function (event) {
     };
 };
 
-function defaultData(){
-  store.put({activity: "1231", meal: "lunch", calories: "100", timedate: "2018-04-22T11:11", notes: "123"});
-  store.put({activity: "breakfasct with jamal", meal: "Breakfast", calories: "200", timedate: "2018-04-22T12:10", notes: "321"});
-}
+$$('.viewEntries').on('click', function(){
+  displayData();
+});
 
-function displayData() {
-var search = document.getElementById("search").value;
-
-var transaction = db.transaction(["dietplan"]);
-var objectStore = transaction.objectStore("dietplan");
-var request = objectStore.get(search);
-
-request.onerror = function(event) {
-  // Handle errors!
-};
-request.onsuccess = function(event) {
-  // Do something with the request.result!
-  alert("added all entries for meal");
-};
-};
 
 function addData() {
   var activity = $$('#activity').val();
@@ -111,7 +103,7 @@ function addData() {
     meal: meal, //doesnt record data
     calories: calories,
     timedate: timedate,
-    notes: notes //doesnt record data
+    notes: notes
   }
 
   // add our newItem object to the object store
@@ -121,6 +113,7 @@ function addData() {
     // report the success of the request (this does not mean the item
     // has been stored successfully in the DB - for that you need transaction.onsuccess)
     console.log("Request successful");
+    alert("Data submitted!");
     window.location.href="index.html";
 
   // report on the success of opening the transaction
@@ -141,40 +134,27 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-// Callbacks to run specific code for specific pages, for example for About page:
-myApp.onPageInit('about', function (page) {
-    // run createContentPage func after link was clicked
-    $$('.create-page').on('click', function () {
-        createContentPage();
-    });
-});
+function displayData(event) {
+  var transaction = db.transaction(["dietplan"],"readonly");
+	//Ask for ObjectStore
+	var store = transaction.objectStore("dietplan");
+	var index = store.index('activity');
 
-// Generate dynamic page
-var dynamicPageIndex = 0;
-function createContentPage() {
-	mainView.router.loadContent(
-        '<!-- Top Navbar-->' +
-        '<div class="navbar">' +
-        '  <div class="navbar-inner">' +
-        '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
-        '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
-        '  </div>' +
-        '</div>' +
-        '<div class="pages">' +
-        '  <!-- Page, data-page contains page name-->' +
-        '  <div data-page="dynamic-pages" class="page">' +
-        '    <!-- Scrollable page content-->' +
-        '    <div class="page-content">' +
-        '      <div class="content-block">' +
-        '        <div class="content-block-inner">' +
-        '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
-        '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
-        '        </div>' +
-        '      </div>' +
-        '    </div>' +
-        '  </div>' +
-        '</div>'
-    );
-	return;
-}
+	var output = '';
+	index.openCursor().onsuccess = function(event){
+		var cursor = event.target.result;
+		if(cursor){
+      output += "<tr>";
+      output += "<td">+cursor.value.activity+"</td>";
+			output += "<td>"+cursor.value.meal+"</td>";
+      output += "<td>"+cursor.value.calories+"</td>";
+      output += "<td>"+cursor.value.notes+"</td>";
+      output += "<td>"+cursor.value.timedate+"</td>";
+			output += "</tr>";
+			cursor.continue();
+		}
+    $$('dietplan').html(output);
+	};
+    alert("data loaded");
+};
 //https://www.eduonix.com/dashboard/Learn-HTML5-IndexedDB-App

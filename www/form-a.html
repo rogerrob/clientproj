@@ -28,11 +28,12 @@
                     </div>
                 </div>
             </li>
+            <!-- smart select for options -->
             <li>
             <!-- Additional "smart-select" class -->
-                <a href="#" class="item-link smart-select smart-select-init" data-open-in="sheet" id="meal">
+                <a href="#" class="item-link smart-select smart-select-init" data-open-in="popup">
                     <!-- select -->
-                    <select name="meal">
+                    <select name="meal" id="meal">
                         <option value="breakfast" selected>Breakfast</option>
                         <option value="lunch">Lunch</option>
                         <option value="dinner">Dinner</option>
@@ -68,16 +69,17 @@
                 </div>
             </li>
             <!--Notes-->
-            <li class="align-top">
+            <li>
                 <div class="item-content">
                     <div class="item-inner">
                         <div class="item-title label">Notes</div>
-                        <div class="item-input" name="notes" id="notes">
-                            <input type="textarea" name="notes" id="notes">
+                        <div class="item-input">
+                            <input type="text" name="notes" id="notes" placeholder=""/>
                         </div>
                     </div>
                 </div>
             </li>
+            <li>
         </ul>
     </form>
     <div class="content-block">
